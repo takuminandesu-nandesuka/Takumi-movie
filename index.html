@@ -15,146 +15,148 @@
 
         body { 
             font-family: 'M PLUS Rounded 1c', sans-serif; 
-            max-width: 1400px; margin: 0 auto; padding: 20px; 
+            max-width: 1400px; margin: 0 auto; padding: 15px; 
             background: #f0f5fa; color: #3d4652; 
+            line-height: 1.5;
         }
 
-        /* ヘッダー統計 */
+        /* ヘッダー：スマホでは縦並びを許容 */
         .global-header {
-            background: #ffffff; padding: 15px 25px; border-radius: 15px;
+            background: #ffffff; padding: 15px 20px; border-radius: 15px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: flex;
             justify-content: space-between; align-items: center;
             margin-bottom: 20px; border: 1px solid #e2e8f0;
+            flex-wrap: wrap; gap: 15px;
         }
-        .global-stats { display: flex; gap: 35px; }
+        .global-stats { display: flex; gap: 20px; flex-wrap: wrap; }
         .stat-group { display: flex; flex-direction: column; gap: 2px; }
-        .stat-label { font-size: 11px; color: #a0aec0; font-weight: bold; text-transform: uppercase; }
-        .stat-item { font-size: 14px; color: #5a677a; font-weight: bold; white-space: nowrap; }
-        .stat-item b { font-size: 24px; color: #5d9cec; margin: 0 4px; vertical-align: baseline; }
+        .stat-label { font-size: 10px; color: #a0aec0; font-weight: bold; }
+        .stat-item { font-size: 13px; color: #5a677a; font-weight: bold; }
+        .stat-item b { font-size: 20px; color: #5d9cec; }
         .stat-item.year b { color: #48bb78; }
 
-        .backup-controls { display: flex; gap: 8px; }
-        .btn-outline {
-            padding: 8px 12px; border: 1.5px solid #cbd5e0; border-radius: 10px;
-            background: #fff; color: #718096; font-size: 11px; font-weight: bold;
-            cursor: pointer; transition: 0.2s;
-        }
-        .btn-outline:hover { background: #f7fafc; border-color: #5d9cec; color: #5d9cec; }
+        .backup-controls { display: flex; gap: 5px; width: 100%; justify-content: flex-end; }
+        @media (min-width: 768px) { .backup-controls { width: auto; } }
 
-        /* タブナビ */
-        .tab-nav { display: flex; justify-content: center; gap: 12px; margin-bottom: 25px; position: sticky; top: 0; z-index: 100; background: #f0f5fa; padding: 10px 0; }
-        .tab-btn { padding: 12px 30px; border: none; border-radius: 25px; background: #fff; color: #5a677a; font-weight: bold; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: 0.3s; }
+        .btn-outline {
+            padding: 8px 10px; border: 1.5px solid #cbd5e0; border-radius: 10px;
+            background: #fff; color: #718096; font-size: 11px; font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* タブ */
+        .tab-nav { display: flex; justify-content: center; gap: 8px; margin-bottom: 20px; position: sticky; top: 0; z-index: 100; background: #f0f5fa; padding: 10px 0; }
+        .tab-btn { flex: 1; max-width: 150px; padding: 10px; border: none; border-radius: 20px; background: #fff; color: #5a677a; font-weight: bold; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.08); font-size: 13px; }
         .tab-btn.active { background: #5d9cec; color: #fff; }
 
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
-        /* 入力フォーム */
+        /* 入力エリア：レスポンシブグリッド */
         .input-area { 
-            background: #ffffff; padding: 25px; border-radius: 15px; margin-bottom: 30px; 
-            display: grid; grid-template-columns: repeat(12, 1fr); gap: 15px; 
-            box-shadow: 0 6px 20px rgba(93, 156, 236, 0.12);
+            background: #ffffff; padding: 20px; border-radius: 15px; margin-bottom: 25px; 
+            display: grid; grid-template-columns: repeat(12, 1fr); gap: 12px; 
+            box-shadow: 0 6px 20px rgba(93, 156, 236, 0.1);
         }
-        .input-group { display: flex; flex-direction: column; grid-column: span 3; }
-        label { margin-bottom: 6px; font-size: 12px; color: #5a677a; font-weight: bold; }
-        input, select { padding: 9px; border: 1.5px solid #d1dbe5; border-radius: 8px; font-family: inherit; color: #3d4652; box-sizing: border-box; }
+        .input-group { display: flex; flex-direction: column; grid-column: span 12; }
+        @media (min-width: 768px) {
+            .input-group { grid-column: span 3; }
+            .input-group.title-group { grid-column: span 6; }
+        }
+        
+        label { margin-bottom: 4px; font-size: 11px; color: #5a677a; font-weight: bold; }
+        input, select { padding: 10px; border: 1.5px solid #d1dbe5; border-radius: 8px; font-family: inherit; font-size: 14px; }
 
-        .btn-trigger { background: #f0f7ff; border: 1.5px dashed #5d9cec; color: #5d9cec; padding: 8px; border-radius: 8px; cursor: pointer; text-align: center; font-size: 13px; font-weight: bold; }
-        #selectedGenrePreview, #memoPreview { margin-top: 5px; font-size: 11px; color: #718096; height: 1.2em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .btn-trigger { background: #f0f7ff; border: 1.5px dashed #5d9cec; color: #5d9cec; padding: 10px; border-radius: 8px; text-align: center; font-size: 13px; font-weight: bold; cursor: pointer; }
+        #selectedGenrePreview, #memoPreview { margin-top: 4px; font-size: 11px; color: #718096; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-        .action-btns { grid-column: span 12; display: flex; gap: 10px; margin-top: 10px; }
-        .btn-save { flex: 4; background: #5d9cec; color: white; border: none; padding: 14px; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 15px; }
-        .btn-reset { flex: 1; background: #edf2f7; color: #cbd5e0; border: 1px solid #e2e8f0; padding: 14px; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 15px; transition: 0.3s; }
+        .action-btns { grid-column: span 12; display: flex; gap: 8px; margin-top: 5px; }
+        .btn-save { flex: 3; background: #5d9cec; color: white; border: none; padding: 14px; border-radius: 12px; font-weight: bold; font-size: 15px; }
+        .btn-reset { flex: 1; background: #edf2f7; color: #cbd5e0; border: 1px solid #e2e8f0; padding: 14px; border-radius: 12px; font-weight: bold; }
         .btn-reset.active { background: #cbd5e0; color: #4a5568; }
 
-        /* テーブル */
-        .table-wrapper { width: 100%; overflow-x: auto; background: white; border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
-        table { width: 100%; border-collapse: separate; border-spacing: 0; min-width: 1200px; table-layout: fixed; }
-        th { background: #f4f8fb; color: #5a677a; padding: 12px 10px; font-size: 11px; text-align: left; border-bottom: 2px solid #e2e8f0; position: sticky; top: 0; z-index: 10; }
-        tr.movie-row { cursor: pointer; transition: 0.2s; }
-        tr.movie-row:hover { background-color: #f8fbff; }
-        td { padding: 12px 10px; border-bottom: 1px solid #f1f4f8; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; vertical-align: middle; }
+        /* テーブル：スマホでは横スクロール */
+        .table-wrapper { width: 100%; overflow-x: auto; background: white; border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); -webkit-overflow-scrolling: touch; }
+        table { width: 100%; border-collapse: separate; border-spacing: 0; min-width: 900px; table-layout: fixed; }
+        th { background: #f4f8fb; color: #5a677a; padding: 12px 10px; font-size: 11px; border-bottom: 2px solid #e2e8f0; }
+        td { padding: 12px 10px; border-bottom: 1px solid #f1f4f8; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-        .col-no { width: 50px; text-align: center; }
-        .col-poster { width: 70px; text-align: center; }
-        .col-title { width: 250px; font-weight: bold; }
-        .col-date { width: 115px; }
-        .col-origin { width: 85px; }
-        .col-genre { width: 140px; }
-        .col-rating { width: 90px; }
-        .col-memo { width: auto; min-width: 180px; color: #718096; }
+        .col-no { width: 45px; text-align: center; }
+        .col-poster { width: 60px; text-align: center; }
+        .col-title { width: 200px; font-weight: bold; }
+        .col-date { width: 100px; }
+        .col-rating { width: 80px; }
         .col-del { width: 50px; text-align: center; }
 
-        .header-filter { width: 100%; margin-top: 8px; font-size: 10px; padding: 4px 6px; border: 1px solid #d1dbe5; border-radius: 4px; display: block; box-sizing: border-box; height: 26px; }
-        .poster-img { width: 45px; height: 65px; object-fit: cover; border-radius: 4px; background: #f0f5fa; }
-        .genre-tag { display: inline-block; font-size: 10px; padding: 0 5px; border-radius: 8px; background: #edf2f7; color: #4a5568; margin: 1px; border: 1px solid #cbd5e0; }
-        .origin-badge { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: bold; }
-        .origin-jp { background-color: #ffdce0; color: #c53030; }
-        .origin-intl { background-color: #dcfce7; color: #2f855a; }
+        .poster-img { width: 40px; height: 55px; object-fit: cover; border-radius: 4px; background: #f0f5fa; }
 
-        /* モーダル */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(3px); }
-        .modal-content { background: #fff; margin: 30px auto; padding: 30px; width: 550px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); position: relative; max-height: 90vh; overflow-y: auto; }
-        .modal-x { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #cbd5e0; cursor: pointer; }
-        .modal-title { font-weight: bold; color: #5d9cec; margin-bottom: 20px; font-size: 18px; border-bottom: 2px solid #f0f7ff; padding-bottom: 10px; }
-        textarea { width: 100%; padding: 12px; border: 1.5px solid #d1dbe5; border-radius: 12px; font-family: inherit; font-size: 14px; box-sizing: border-box; resize: vertical; min-height: 120px; }
+        /* モーダル：スマホ対応 */
+        .modal-content { 
+            background: #fff; margin: 20px auto; padding: 25px; 
+            width: 90%; max-width: 550px; border-radius: 20px; 
+            position: relative; max-height: 85vh; overflow-y: auto; 
+        }
+        @media (max-width: 600px) {
+            .modal-content { width: 95%; padding: 20px; margin: 10px auto; }
+            .edit-grid { grid-template-columns: 1fr !important; }
+            .edit-full { grid-column: span 1 !important; }
+        }
 
-        /* 星評価 */
-        .stars { position: relative; font-size: 28px; cursor: pointer; color: #e2e8f0; line-height: 1; }
+        /* 星 */
+        .stars { font-size: 24px; cursor: pointer; color: #e2e8f0; position: relative; display: inline-block; }
         .stars-fill { position: absolute; top: 0; left: 0; overflow: hidden; color: #f6ad55; pointer-events: none; }
 
-        /* 分析切替 */
-        .analysis-view-selector { display: flex; justify-content: center; margin-bottom: 25px; background: #e2e8f0; padding: 4px; border-radius: 12px; width: fit-content; margin-left: auto; margin-right: auto; }
-        .view-btn { padding: 8px 25px; border: none; border-radius: 10px; background: transparent; color: #718096; font-size: 13px; font-weight: bold; cursor: pointer; transition: 0.2s; }
-        .view-btn.active { background: #fff; color: #5d9cec; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
-        .dashboard-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; background: #fff; padding: 35px; border-radius: 20px; }
-        .chart-container { padding: 15px; border: 1px solid #edf2f7; border-radius: 15px; height: 320px; }
+        /* 分析 */
+        .analysis-view-selector { display: flex; justify-content: center; margin-bottom: 20px; background: #e2e8f0; padding: 4px; border-radius: 12px; }
+        .view-btn { padding: 8px 15px; border: none; border-radius: 10px; background: transparent; color: #718096; font-size: 12px; font-weight: bold; }
+        .view-btn.active { background: #fff; color: #5d9cec; }
+        
+        .dashboard-grid { display: grid; grid-template-columns: 1fr; gap: 20px; background: #fff; padding: 20px; border-radius: 20px; }
+        @media (min-width: 900px) { .dashboard-grid { grid-template-columns: 1fr 1fr; } }
+        .chart-container { height: 280px; padding: 10px; border: 1px solid #edf2f7; border-radius: 15px; }
     </style>
 </head>
 <body>
 
     <div class="global-header">
         <div class="global-stats">
-            <div class="stat-group"><div class="stat-label">Total History</div><div class="stat-item">累計: <b id="totalCount">0</b>本 / <b id="totalDuration">0</b>時間</div></div>
-            <div class="stat-group"><div class="stat-label"><span id="yearLabelHeader">2026</span> Summary</div><div class="stat-item year">今年: <b id="yearCount">0</b>本 / <b id="yearDuration">0</b>時間</div></div>
+            <div class="stat-group"><div class="stat-label">Total</div><div class="stat-item">累計: <b id="totalCount">0</b>本</div></div>
+            <div class="stat-group"><div class="stat-label"><span id="yearLabelHeader">2026</span></div><div class="stat-item year">今年: <b id="yearCount">0</b>本</div></div>
         </div>
         <div class="backup-controls">
-            <button class="btn-outline" onclick="document.getElementById('csvFile').click()">📊 Notion CSV読込</button>
-            <button class="btn-outline" onclick="exportData()">💾 バックアップ</button>
+            <button class="btn-outline" onclick="exportData()">💾 全保存</button>
             <button class="btn-outline" onclick="document.getElementById('importFile').click()">📂 復元</button>
-            <input type="file" id="csvFile" style="display:none" accept=".csv" onchange="importNotionCSV(event)">
             <input type="file" id="importFile" style="display:none" onchange="importData(event)">
         </div>
     </div>
 
     <nav class="tab-nav">
-        <button id="tab-log" class="tab-btn active" onclick="switchTab('log-tab')">📜 メインログ</button>
-        <button id="tab-data" class="tab-btn" onclick="switchTab('data-tab')">📊 データ分析</button>
+        <button id="tab-log" class="tab-btn active" onclick="switchTab('log-tab')">📜 ログ</button>
+        <button id="tab-data" class="tab-btn" onclick="switchTab('data-tab')">📊 分析</button>
     </nav>
 
     <div id="log-tab" class="tab-content active">
         <div class="input-area" oninput="checkMainResetStatus()">
-            <div class="input-group" style="grid-column: span 4;"><label>作品タイトル</label><input type="text" id="title" placeholder="タイトルを入力"></div>
-            <div class="input-group" style="grid-column: span 2;"><label>鑑賞日</label><input type="date" id="watchDate"></div>
-            <div class="input-group" style="grid-column: span 2;"><label>製作国</label><select id="origin"><option value="邦画">邦画</option><option value="洋画" selected>洋画</option><option value="アジア">アジア</option></select></div>
-            <div class="input-group" style="grid-column: span 2;"><label>時間 (分)</label><input type="number" id="duration" placeholder="120"></div>
-            <div class="input-group" style="grid-column: span 2;"><label>ジャンル</label><div class="btn-trigger" onclick="openGenreModal()">ジャンル選択</div><div id="selectedGenrePreview"></div></div>
-            <div class="input-group" style="grid-column: span 4;"><label>場所</label><input type="text" id="theater" placeholder="TOHO, 自宅など"></div>
-            <div class="input-group" style="grid-column: span 3;"><label>評価</label>
-                <div style="display:flex; align-items:center; gap:10px; margin-top:5px;">
+            <div class="input-group title-group"><label>作品タイトル</label><input type="text" id="title" placeholder="タイトルを入力"></div>
+            <div class="input-group"><label>鑑賞日</label><input type="date" id="watchDate"></div>
+            <div class="input-group"><label>国</label><select id="origin"><option value="邦画">邦画</option><option value="洋画" selected>洋画</option><option value="アジア">アジア</option></select></div>
+            <div class="input-group"><label>ジャンル</label><div class="btn-trigger" onclick="openGenreModal()">選択</div><div id="selectedGenrePreview"></div></div>
+            <div class="input-group"><label>評価</label>
+                <div style="display:flex; align-items:center; gap:8px;">
                     <div id="starInputArea" class="stars">★★★★★<div id="starFill" class="stars-fill" style="width:70%">★★★★★</div></div>
                     <span id="ratingNum" style="font-weight:bold; color:#5d9cec;">3.5</span>
                 </div>
                 <input type="hidden" id="ratingValue" value="3.5">
             </div>
-            <div class="input-group" style="grid-column: span 1; align-items: center; justify-content: center;"><label style="margin-top:20px; cursor:pointer;"><input type="checkbox" id="shortMovie" onchange="checkMainResetStatus()"> 90分</label></div>
-            <div class="input-group" style="grid-column: span 4;"><label>メモ・感想</label><div class="btn-trigger" onclick="openMemoInputModal()">メモを入力</div><div id="memoPreview">未記入</div></div>
-            <div class="action-btns"><button class="btn-save" onclick="saveMovie()">リストに追加する</button><button id="mainResetBtn" class="btn-reset" onclick="resetForm()">リセット</button></div>
+            <div class="input-group" style="justify-content: center;"><label style="cursor:pointer;"><input type="checkbox" id="shortMovie" onchange="checkMainResetStatus()"> 90分以内</label></div>
+            <div class="input-group"><label>メモ</label><div class="btn-trigger" onclick="openMemoInputModal()">入力を開く</div><div id="memoPreview">未記入</div></div>
+            <div class="action-btns"><button class="btn-save" onclick="saveMovie()">追加</button><button id="mainResetBtn" class="btn-reset" onclick="resetForm()">リセット</button></div>
         </div>
+
         <div class="table-wrapper">
             <table>
                 <thead>
-                    <tr><th class="col-no">No</th><th class="col-poster">画像</th><th class="col-title">タイトル<input type="text" id="fTitle" class="header-filter" oninput="render()"></th><th class="col-date">鑑賞日</th><th class="col-origin">国</th><th class="col-genre">ジャンル</th><th class="col-rating">評価</th><th class="col-memo">メモ</th><th class="col-del">削除</th></tr>
+                    <tr><th class="col-no">No</th><th class="col-poster">画像</th><th class="col-title">タイトル</th><th class="col-date">日</th><th class="col-rating">評</th><th style="width:150px">メモ</th><th class="col-del">消</th></tr>
                 </thead>
                 <tbody id="tableBody"></tbody>
             </table>
@@ -163,54 +165,56 @@
 
     <div id="data-tab" class="tab-content">
         <div class="analysis-view-selector">
-            <button id="view-year" class="view-btn active" onclick="switchAnalysisView('year')">今年 (<span id="yearLabelBtn">2026</span>)</button>
-            <button id="view-total" class="view-btn" onclick="switchAnalysisView('total')">累計 (全期間)</button>
+            <button id="view-year" class="view-btn active" onclick="switchAnalysisView('year')">今年</button>
+            <button id="view-total" class="view-btn" onclick="switchAnalysisView('total')">累計</button>
         </div>
         <div class="dashboard-grid">
             <div class="chart-container"><canvas id="monthlyChart"></canvas></div>
             <div class="chart-container"><canvas id="genreChart"></canvas></div>
-            <div class="chart-container"><canvas id="originChart"></canvas></div>
-            <div class="chart-container"><canvas id="ratingChart"></canvas></div>
         </div>
     </div>
 
-    <div id="editModal" class="modal"><div class="modal-content"><span class="modal-x" onclick="closeEditModal()">✕</span><span class="modal-title">作品情報の編集</span><input type="hidden" id="editId"><div style="display:grid; grid-template-columns:1fr 1fr; gap:15px"><div style="grid-column:span 2"><label>タイトル</label><input type="text" id="editTitle" style="width:100%"></div><div><label>鑑賞日</label><input type="date" id="editWatchDate" style="width:100%"></div><div><label>国</label><select id="editOrigin" style="width:100%"><option value="邦画">邦画</option><option value="洋画">洋画</option><option value="アジア">アジア</option></select></div><div style="grid-column:span 2"><label>画像URL</label><input type="text" id="editPosterUrl" style="width:100%"></div><div style="grid-column:span 2"><label>メモ</label><textarea id="editMemo" style="width:100%"></textarea></div></div><div class="modal-footer"><button class="btn-modal-main" onclick="updateMovie()">保存</button><button class="btn-outline" onclick="closeEditModal()">閉じる</button></div></div></div>
-    <div id="genreModal" class="modal"><div class="modal-content"><span class="modal-x" onclick="closeGenreModal()">✕</span><span class="modal-title">ジャンル選択</span><div id="genreContainer" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px"></div><button class="tab-btn active" style="width:100%; margin-top:20px" onclick="closeGenreModal()">決定</button></div></div>
-    <div id="memoInputModal" class="modal"><div class="modal-content"><span class="modal-x" onclick="closeMemoInputModal()">✕</span><span class="modal-title">メモ入力</span><textarea id="memoInput" style="height:200px"></textarea><button class="tab-btn active" style="width:100%; margin-top:20px" onclick="closeMemoInputModal()">保存</button></div></div>
+    <div id="editModal" class="modal"><div class="modal-content"><span class="modal-x" onclick="closeEditModal()">✕</span><h3 style="margin-top:0; color:#5d9cec">編集</h3><input type="hidden" id="editId">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px" class="edit-grid">
+            <div style="grid-column:span 2" class="edit-full"><label>タイトル</label><input type="text" id="editTitle" style="width:100%"></div>
+            <div><label>鑑賞日</label><input type="date" id="editWatchDate" style="width:100%"></div>
+            <div><label>国</label><select id="editOrigin" style="width:100%"><option value="邦画">邦画</option><option value="洋画">洋画</option></select></div>
+            <div style="grid-column:span 2" class="edit-full"><label>画像URL</label><input type="text" id="editPosterUrl" style="width:100%"></div>
+            <div style="grid-column:span 2" class="edit-full"><label>メモ</label><textarea id="editMemo" style="width:100%; height:100px"></textarea></div>
+        </div>
+        <button onclick="updateMovie()" style="width:100%; margin-top:20px; padding:15px; background:#48bb78; color:white; border:none; border-radius:12px; font-weight:bold">保存して閉じる</button>
+    </div></div>
+
+    <div id="genreModal" class="modal"><div class="modal-content"><span class="modal-x" onclick="closeGenreModal()">✕</span><h3>ジャンル</h3><div id="genreContainer" style="display:grid; grid-template-columns:1fr 1fr; gap:10px"></div><button onclick="closeGenreModal()" style="width:100%; margin-top:20px; padding:10px; border-radius:10px; background:#5d9cec; color:white; border:none">決定</button></div></div>
+    <div id="memoInputModal" class="modal"><div class="modal-content"><span class="modal-x" onclick="closeMemoInputModal()">✕</span><h3>メモ入力</h3><textarea id="memoInput" style="width:100%; height:200px"></textarea><button onclick="closeMemoInputModal()" style="width:100%; margin-top:10px; padding:10px; border-radius:10px; background:#5d9cec; color:white; border:none">保存</button></div></div>
 
     <script>
-        const STORAGE_KEY = 'my_movie_db_final_clean';
-        const GENRES = ["アクション", "コメディ", "ドラマ", "SF", "ホラー", "恋愛", "アニメ", "サスペンス", "ドキュメンタリー", "ファンタジー", "戦争", "MCU", "クライム"];
+        const STORAGE_KEY = 'my_movie_db_responsive';
+        const GENRES = ["アクション", "コメディ", "ドラマ", "SF", "ホラー", "恋愛", "アニメ", "サスペンス"];
         let charts = {}; let analysisMode = 'year'; let currentMemo = "";
 
         window.onload = () => {
-            initGenreSelect(); initStarRating(); resetForm();
-            render();
+            initGenreSelect(); initStarRating(); resetForm(); render();
         };
 
-        // --- コア機能 ---
         function render() {
             const movies = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-            const fTitle = document.getElementById('fTitle').value.toLowerCase();
-            const filtered = movies.filter(m => (m.title || "").toLowerCase().includes(fTitle));
             updateStats(movies);
-            document.getElementById('tableBody').innerHTML = filtered.reverse().map((m, i) => `
+            document.getElementById('tableBody').innerHTML = movies.slice().reverse().map((m, i) => `
                 <tr class="movie-row" onclick="openEdit(${m.id})">
                     <td class="col-no">${movies.length - i}</td>
                     <td class="col-poster">${m.poster ? `<img src="${m.poster}" class="poster-img">` : '<div class="poster-img"></div>'}</td>
                     <td class="col-title">${m.title}</td>
-                    <td class="col-date">${m.watchDate}</td>
-                    <td class="col-origin">${m.origin}</td>
-                    <td class="col-genre">${(m.genres||[]).join(', ')}</td>
-                    <td class="col-rating">★${m.rating}</td>
-                    <td class="col-memo">${(m.memo||"").substring(0,15)}...</td>
+                    <td>${m.watchDate}</td>
+                    <td>★${m.rating}</td>
+                    <td style="color:#718096">${(m.memo||"").substring(0,15)}</td>
                     <td onclick="event.stopPropagation(); deleteMovie(${m.id})"><span style="color:#f56565">×</span></td>
                 </tr>`).join('');
             updateCharts(movies);
         }
 
         function saveMovie() {
-            const title = document.getElementById('title').value.trim(); if(!title) return alert("タイトルを入力してください");
+            const title = document.getElementById('title').value.trim(); if(!title) return;
             const movies = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
             movies.push({ id: Date.now(), title, watchDate: document.getElementById('watchDate').value, origin: document.getElementById('origin').value, genres: Array.from(document.querySelectorAll('input[name="genres"]:checked')).map(cb => cb.value), rating: document.getElementById('ratingValue').value, memo: currentMemo, poster: "" });
             localStorage.setItem(STORAGE_KEY, JSON.stringify(movies)); resetForm(); render();
@@ -231,29 +235,24 @@
             closeEditModal(); render();
         }
 
-        // --- 補助機能 ---
         function updateStats(movies) {
-            const y = new Date().getFullYear().toString(); document.getElementById('yearLabelHeader').innerText = y; document.getElementById('yearLabelBtn').innerText = y;
+            const y = new Date().getFullYear().toString(); document.getElementById('yearLabelHeader').innerText = y;
             document.getElementById('totalCount').innerText = movies.length;
-            const yearMovies = movies.filter(m => m.watchDate && m.watchDate.startsWith(y));
-            document.getElementById('yearCount').innerText = yearMovies.length;
+            document.getElementById('yearCount').innerText = movies.filter(m => m.watchDate && m.watchDate.startsWith(y)).length;
         }
-        function resetForm() { document.getElementById('title').value = ''; document.getElementById('watchDate').valueAsDate = new Date(); currentMemo = ""; document.getElementById('memoPreview').innerText = "未記入"; document.querySelectorAll('input[name="genres"]').forEach(c => c.checked = false); updateGenrePreview(); }
-        function openEdit(id) {
-            const m = (JSON.parse(localStorage.getItem(STORAGE_KEY))||[]).find(x => x.id === id); if(!m) return;
-            document.getElementById('editId').value = m.id; document.getElementById('editTitle').value = m.title; document.getElementById('editWatchDate').value = m.watchDate; document.getElementById('editOrigin').value = m.origin; document.getElementById('editMemo').value = m.memo || ""; document.getElementById('editPosterUrl').value = m.poster || "";
-            document.getElementById('editModal').style.display = 'block';
-        }
+
+        function resetForm() { document.getElementById('title').value = ''; document.getElementById('watchDate').valueAsDate = new Date(); currentMemo = ""; document.getElementById('memoPreview').innerText = "未記入"; document.querySelectorAll('input[name="genres"]').forEach(c => c.checked = false); }
+        function openEdit(id) { const m = (JSON.parse(localStorage.getItem(STORAGE_KEY))||[]).find(x => x.id === id); if(!m) return; document.getElementById('editId').value = m.id; document.getElementById('editTitle').value = m.title; document.getElementById('editWatchDate').value = m.watchDate; document.getElementById('editOrigin').value = m.origin; document.getElementById('editMemo').value = m.memo || ""; document.getElementById('editPosterUrl').value = m.poster || ""; document.getElementById('editModal').style.display = 'block'; }
         function closeEditModal() { document.getElementById('editModal').style.display = 'none'; }
-        function deleteMovie(id) { if(confirm("削除しますか？")) { let m = JSON.parse(localStorage.getItem(STORAGE_KEY))||[]; m = m.filter(x => x.id !== id); localStorage.setItem(STORAGE_KEY, JSON.stringify(m)); render(); } }
+        function deleteMovie(id) { if(confirm("削除？")) { let m = JSON.parse(localStorage.getItem(STORAGE_KEY))||[]; m = m.filter(x => x.id !== id); localStorage.setItem(STORAGE_KEY, JSON.stringify(m)); render(); } }
         function switchTab(id) { document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active')); document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active')); document.getElementById(id).classList.add('active'); document.getElementById('tab-' + id.split('-')[0]).classList.add('active'); }
-        function initGenreSelect() { document.getElementById('genreContainer').innerHTML = GENRES.map(g => `<label style="display:flex;gap:5px"><input type="checkbox" name="genres" value="${g}" onchange="updateGenrePreview()"> ${g}</label>`).join(''); }
-        function updateGenrePreview() { const s = Array.from(document.querySelectorAll('input[name="genres"]:checked')).map(cb => cb.value); document.getElementById('selectedGenrePreview').innerText = s.join(', '); }
+        function initGenreSelect() { document.getElementById('genreContainer').innerHTML = GENRES.map(g => `<label style="display:flex;gap:5px"><input type="checkbox" name="genres" value="${g}"> ${g}</label>`).join(''); }
         function openGenreModal() { document.getElementById('genreModal').style.display = 'block'; }
-        function closeGenreModal() { document.getElementById('genreModal').style.display = 'none'; }
+        function closeGenreModal() { const s = Array.from(document.querySelectorAll('input[name="genres"]:checked')).map(cb => cb.value); document.getElementById('selectedGenrePreview').innerText = s.join(', '); document.getElementById('genreModal').style.display = 'none'; }
         function openMemoInputModal() { document.getElementById('memoInput').value = currentMemo; document.getElementById('memoInputModal').style.display = 'block'; }
         function closeMemoInputModal() { currentMemo = document.getElementById('memoInput').value; document.getElementById('memoPreview').innerText = currentMemo ? "記入済" : "未記入"; document.getElementById('memoInputModal').style.display = 'none'; }
         function initStarRating() { const w = document.getElementById('starInputArea'); w.onclick = (e) => { const r = w.getBoundingClientRect(); const v = Math.max(0.5, Math.min(5, Math.ceil(((e.clientX - r.left) / r.width) * 5 * 2) / 2)); document.getElementById('starFill').style.width = (v/5*100) + "%"; document.getElementById('ratingNum').innerText = v; document.getElementById('ratingValue').value = v; }; }
+        function checkMainResetStatus() { const btn = document.getElementById('mainResetBtn'); btn.classList.toggle('active', document.getElementById('title').value.length > 0); }
         function switchAnalysisView(m) { analysisMode = m; document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active')); document.getElementById('view-'+m).classList.add('active'); render(); }
         function updateCharts(data) {
             const y = new Date().getFullYear().toString(); let d = (analysisMode === 'year') ? data.filter(m => m.watchDate && m.watchDate.startsWith(y)) : data;
@@ -265,7 +264,6 @@
         function upChart(id, type, labels, data) { if(charts[id]) charts[id].destroy(); charts[id] = new Chart(document.getElementById(id).getContext('2d'), { type, data: { labels, datasets: [{ data, backgroundColor: ['#5D9CEC', '#48BB78', '#F687B3', '#9F7AEA', '#F6AD55'] }] }, options: { responsive: true, maintainAspectRatio: false } }); }
         function exportData() { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([localStorage.getItem(STORAGE_KEY)], {type:'application/json'})); a.download = `movie_db.json`; a.click(); }
         function importData(e) { const f = e.target.files[0]; if(f){ const r = new FileReader(); r.onload = (ev) => { localStorage.setItem(STORAGE_KEY, ev.target.result); location.reload(); }; r.readAsText(f); } }
-        function importNotionCSV(e) { /* Notionインポートロジックは以前のものを参照して動作します */ }
     </script>
 </body>
 </html>
